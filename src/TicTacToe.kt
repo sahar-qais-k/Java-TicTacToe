@@ -10,7 +10,6 @@ object TicTacToe {
     private var valid_input = false
     @JvmStatic
     fun main(args: Array<String>) {
-        val gameSize: Int
         val minimumGameSize = 1
         val maximumGameSize = 26
 
@@ -29,7 +28,7 @@ object TicTacToe {
         //validate user unput for game size
         valid_input = false
         while (!valid_input) {
-            if (user_input!!.length > 0 && user_input!!.substring(0, 1)
+            if (user_input!!.isNotEmpty() && user_input!!.substring(0, 1)
                     .matches("[1-9]".toRegex()) && minimumGameSize <= user_input!!.toInt() && user_input!!.toInt() <= maximumGameSize
             ) {
                 valid_input = true
@@ -43,7 +42,7 @@ object TicTacToe {
             println("\n\t!!WARNING!!\n\t!!WARNING!!  Games large than 15 will not display correctly if console width is restricted to 80 col (neither will this message)\n\t!!WARNING!!")
             getInput("")
         }
-        gameSize = user_input!!.toInt()
+        val gameSize: Int = user_input!!.toInt()
 
         //Create a new Game instance
         game = Game(gameSize)
