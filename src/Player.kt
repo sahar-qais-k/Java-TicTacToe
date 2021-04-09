@@ -1,3 +1,5 @@
+import kotlin.math.roundToInt
+
 class Player     //constructor.  requires string to set player type
     (  //player makes moves and can be human or AI
     private val type // whether the player is human or AI
@@ -22,7 +24,7 @@ class Player     //constructor.  requires string to set player type
             delay(1000, game!!.gridSize) //take a second to go to make it appear as if computer is thinking
             while (turn) {
                 //AI selects a random empty cell and places corrosponding mark
-                index = Math.round((game!!.gridSize * game!!.gridSize - 1) * Math.random())
+                index = ((game!!.gridSize * game!!.gridSize - 1) * Math.random()).roundToInt()
                     .toInt()
                 move(index, game)
             }

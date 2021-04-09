@@ -3,7 +3,7 @@ class Game(var gridSize: Int) {
     //with the help of the Cell class.
     var finished = false
     var draw = false
-    private val grid: Array<Cell?>
+    private val grid: Array<Cell?> = arrayOfNulls(gridSize * gridSize)
 
     //checks to see if a win condition has been met and
     //outputs the current game map to the console
@@ -17,9 +17,7 @@ class Game(var gridSize: Int) {
         return if (grid[index]!!.empty) {
             grid[index]!!.placeMark()
             true
-        } else {
-            false
-        }
+        } else false
     }
 
     //checks to see if a win condition has been met
@@ -29,19 +27,13 @@ class Game(var gridSize: Int) {
         var columnWin: Boolean
         var diagonalWin: Boolean
         val rows = Array(gridSize) {
-            arrayOfNulls<Cell>(
-                gridSize
-            )
+            arrayOfNulls<Cell>(gridSize)
         }
         val columns = Array(gridSize) {
-            arrayOfNulls<Cell>(
-                gridSize
-            )
+            arrayOfNulls<Cell>(gridSize)
         }
         val diagonals = Array(2) {
-            arrayOfNulls<Cell>(
-                gridSize
-            )
+            arrayOfNulls<Cell>(gridSize)
         } //there are only ever two diagonals which complete a tictactoe in a square
 
         //if every cell is filled, end the game
@@ -79,17 +71,17 @@ class Game(var gridSize: Int) {
 
         //if a row has all the same content and isnt empty
         //then the game is over
-        for (row in rows) {
+         rows.forEach  {
 
             //if the row elements are all the same and not empty
             //set finished to true
             rowWin = true
-            for (i in 0 until row.size - 1) {
-                if (row[i]!!.output() !== row[i + 1]!!.output()) {
+            for (i in 0 until it.size - 1) {
+                if (it[i]!!.output() !== it[i + 1]!!.output()) {
                     rowWin = false
                 }
-                for (j in 0 until row.size - 1) {
-                    if (row[i]!!.empty) {
+                for (j in 0 until it.size - 1) {
+                    if (it[i]!!.empty) {
                         rowWin = false
                     }
                 }
@@ -102,17 +94,17 @@ class Game(var gridSize: Int) {
 
         //if a column has all the same content and isnt empty
         //then the game is over
-        for (column in columns) {
+         columns.forEach  {
 
             //if the column elements are all the same and not empty
             //set finished to true
             columnWin = true
-            for (i in 0 until column.size - 1) {
-                if (column[i]!!.output() !== column[i + 1]!!.output()) {
+            for (i in 0 until it.size - 1) {
+                if (it[i]!!.output() !== it[i + 1]!!.output()) {
                     columnWin = false
                 }
-                for (j in 0 until column.size - 1) {
-                    if (column[i]!!.empty) {
+                for (j in 0 until it.size - 1) {
+                    if (it[i]!!.empty) {
                         columnWin = false
                     }
                 }
@@ -199,7 +191,6 @@ class Game(var gridSize: Int) {
 
     //constructor.  takes integer and generates a new Game with given size
     init {
-        grid = arrayOfNulls(gridSize * gridSize)
         for (i in grid.indices) {
             grid[i] = Cell()
         }
