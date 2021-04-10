@@ -1,4 +1,4 @@
-Java-TicTacToe
+kotlin-TicTacToe
 ==============
 
 A TicTacToe game written in Java
